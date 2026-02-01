@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Mass Junior Contractors & Suppliers</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<header>
+  
+    <nav class="container">
+<div class="logo">
+    <img src="images/logo.png" alt="Mass Junior Contractors & Suppliers Logo" style="height: 60px; object-fit: contain;">
+</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+  
+</header>
+<body>
+    <!-- Your existing header here -->
+
+    <section class="section">
+        <div class="container">
+            <h2>Our Projects Gallery</h2>
+            <p style="text-align: center; font-size: 1.3rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 3rem;">
+                Real builds, real impact. From Kitwe homes to Copperbelt infrastructure—see what Zambian Builders delivers.
+            </p>
+
+            <!-- Filters -->
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <button class="filter-btn active" data-filter="all" style="background: var(--accent); color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 50px; margin: 0.5rem; cursor: pointer; font-weight: 600;">All</button>
+                <button class="filter-btn" data-filter="residential" style="background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 0.8rem 1.5rem; border-radius: 50px; margin: 0.5rem; cursor: pointer;">Residential</button>
+                <button class="filter-btn" data-filter="commercial" style="background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 0.8rem 1.5rem; border-radius: 50px; margin: 0.5rem; cursor: pointer;">Commercial</button>
+                <button class="filter-btn" data-filter="infrastructure" style="background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 0.8rem 1.5rem; border-radius: 50px; margin: 0.5rem; cursor: pointer;">Infrastructure</button>
+            </div>
+
+            <!-- Masonry Gallery -->
+            <div class="gallery-masonry" id="gallery">
+                <!-- Residential -->
+                <div class="gallery-item" data-category="residential">
+                    <img src="images/residential1.jpg" alt="Modern Family Home - Kitwe" loading="lazy">
+                    <div class="overlay">
+                        <h4>Kitwe Family Residence</h4>
+                        <p>4-bedroom modern home • 2025 • Sustainable design</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="residential">
+                    <img src="images/residential2.jpg" alt="Gated Estate - Copperbelt" loading="lazy">
+                    <div class="overlay">
+                        <h4>Copperbelt Gated Community</h4>
+                        <p>Multi-unit estate • Secure & energy-efficient</p>
+                    </div>
+                </div>
+
+                <!-- Commercial -->
+                <div class="gallery-item" data-category="commercial">
+                    <img src="images/commercial1.jpg" alt="Kitwe Corporate Tower" loading="lazy">
+                    <div class="overlay">
+                        <h4>Kitwe Corporate Tower</h4>
+                        <p>30-story mixed-use • Delivered on time</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="commercial">
+                    <img src="images/commercial2.jpg" alt="Lusaka Retail Center" loading="lazy">
+                    <div class="overlay">
+                        <h4>Lusaka Retail Hub</h4>
+                        <p>Shopping complex • Modern facade</p>
+                    </div>
+                </div>
+
+                <!-- Infrastructure -->
+                <div class="gallery-item" data-category="infrastructure">
+                    <img src="images/infra1.jpg" alt="Highway Upgrade - Copperbelt" loading="lazy">
+                    <div class="overlay">
+                        <h4>Copperbelt Road Upgrade</h4>
+                        <p>Major infrastructure • Safer travel</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="infrastructure">
+                    <img src="images/infra2.jpg" alt="Bridge Project - Zambia" loading="lazy">
+                    <div class="overlay">
+                        <h4>Zambezi Bridge Extension</h4>
+                        <p>Civil works • Durable & efficient</p>
+                    </div>
+                </div>
+
+                <!-- Add 6-10 more items with your real photos! Vary heights/aspects for masonry magic -->
+            </div>
+
+            <!-- Lightbox (enhanced with caption) -->
+            <div class="lightbox" id="lightbox">
+                <span class="close-btn">&times;</span>
+                <img src="" alt="" id="lightbox-img">
+                <div id="lightbox-caption" style="color: white; margin-top: 1rem; font-size: 1.2rem;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Your existing footer and WhatsApp here -->
+
+
+    <a href="https://wa.me/+260123456789?text=Hello%20from%20your%20website" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+    
+    <footer style="background: var(--bg); padding: 4rem 0 2rem; border-top: 1px solid var(--border); color: var(--text-muted);">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+            
+            <!-- Column 1: Logo & About -->
+            <div>
+                <div class="logo" style="font-size: 2rem; margin-bottom: 1rem;">Mass Junior Contractors & Suppliers</div>
+                <p style="margin-bottom: 1.5rem;">Building Zambia's future with strength, innovation, and pride. From Chililabombwe to the Copperbelt and beyond.</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Flag_of_Zambia.svg/960px-Flag_of_Zambia.svg.png" alt="Zambia Flag" style="width: 80px; opacity: 0.7; border-radius: 4px;">
+            </div>
+            
+            <!-- Column 2: Quick Links -->
+            <div>
+                <h3 style="color: var(--text); font-size: 1.4rem; margin-bottom: 1.5rem;">Quick Links</h3>
+                <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li><a href="index.html" style="transition: color 0.3s;">Home</a></li>
+                    <li><a href="about.html" style="transition: color 0.3s;">About Us</a></li>
+                    <li><a href="services.html" style="transition: color 0.3s;">Services</a></li>
+                    <li><a href="gallery.html" style="transition: color 0.3s;">Gallery</a></li>
+                    <li><a href="contact.html" style="transition: color 0.3s;">Contact</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 3: Contact Info -->
+            <div>
+                <h3 style="color: var(--text); font-size: 1.4rem; margin-bottom: 1.5rem;">Get in Touch</h3>
+                <p><i class="fas fa-map-marker-alt" style="color: var(--accent); margin-right: 0.8rem;"></i> 14 IBIS, Kamenza Way, Chililabombwe, Zambia</p>
+                <p><i class="fas fa-phone" style="color: var(--accent); margin-right: 0.8rem;"></i> +260 973 268 052</p>
+                <p><i class="fas fa-envelope" style="color: var(--accent); margin-right: 0.8rem;"></i>Massjuniorsuppliers@gmail.com</p>
+                <a href="https://wa.me/+260yournumber?text=Hello%20Zambian%20Builders!" style="color: #25D366; font-weight: 600; display: inline-block; margin-top: 1rem;">
+                    <i class="fab fa-whatsapp" style="font-size: 1.6rem; margin-right: 0.5rem;"></i> Chat on WhatsApp
+                </a>
+            </div>
+            
+            <!-- Column 4: Social & Extra -->
+            <div>
+                <h3 style="color: var(--text); font-size: 1.4rem; margin-bottom: 1.5rem;">Follow Us</h3>
+                <div style="display: flex; gap: 1.2rem; margin-bottom: 1.5rem;">
+                    <a href="#" style="font-size: 1.8rem; transition: transform 0.3s, color 0.3s;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" style="font-size: 1.8rem; transition: transform 0.3s, color 0.3s;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" style="font-size: 1.8rem; transition: transform 0.3s, color 0.3s;"><i class="fab fa-linkedin-in"></i></a>
+                    <!-- Add more if you have Twitter/X etc. -->
+                </div>
+                <p style="font-size: 0.9rem;">Proudly Zambian • Committed to Excellence</p>
+            </div>
+        </div>
+        
+        <!-- Bottom Bar -->
+        <div style="text-align: center; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.95rem;">
+            <p>&copy; 2026 Mass Junior Contractors & Suppliers. All rights reserved.</p>
+            <p style="margin-top: 0.5rem;">Designed with strength in Chililabombwe, Copperbelt Province.</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
