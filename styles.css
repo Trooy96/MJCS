@@ -296,3 +296,56 @@ img {
 .gallery-item {
     margin-bottom: 2rem;
 }
+
+/* Gallery images */
+
+/* Added to Gallery */
+.gallery-item {
+    cursor: zoom-in;           /* Better hint than pointer */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.gallery-item:active {
+    transform: scale(0.98);    /* Slight press feedback on click */
+}
+
+
+/* Lightbox impro */
+@media (max-width: 768px) {
+    .lightbox img {
+        max-height: 70vh;
+    }
+    #lightbox-caption {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+    .close-btn {
+        top: 15px;
+        right: 20px;
+        font-size: 2.8rem;
+    }
+}
+
+
+.lightbox-prev, .lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 3rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+.lightbox-prev:hover, .lightbox-next:hover { background: rgba(124,58,237,0.7); }
+
