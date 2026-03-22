@@ -1,7 +1,8 @@
-// script.js - Cleaned & Consolidated Version
+// script.js - Cleaned, consolidated & improved version (March 2026)
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile Menu Toggle
+
+    // 1. Mobile Menu Toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     if (menuToggle && navLinks) {
@@ -10,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Smooth Scrolling for anchor links
+    // 2. Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -21,12 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Header scroll effect
+    // 3. Header scrolled effect
     window.addEventListener('scroll', () => {
         document.querySelector('header')?.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Fade-in animations on scroll
+    // 4. Fade-in sections/cards/items on scroll
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -40,17 +41,19 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // ── Gallery Filters ────────────────────────────────────────────────
+    // ────────────────────────────────────────────────────────────────
+    // GALLERY FILTERS + LIGHTBOX
+    // ────────────────────────────────────────────────────────────────
+
     const filterBtns = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
 
+    // Filters
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Update active state
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // Filter items
             const filter = btn.dataset.filter;
             galleryItems.forEach(item => {
                 if (filter === 'all' || item.dataset.category === filter) {
@@ -62,31 +65,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ── Gallery Lightbox (using existing HTML #lightbox) ───────────────
+    // Lightbox
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCaption = document.getElementById('lightbox-caption');
     const closeBtn = document.querySelector('.close-btn');
 
     if (lightbox && lightboxImg && closeBtn) {
-        // Open lightbox from gallery item click
-        galleryItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                // Prevent any nested clicks (e.g. from overlay) from bubbling weirdly
-                // e.stopPropagation();  // usually not needed here
+        let currentIndex = 0;
 
-                const img = item.querySelector('img');
-                if (!img) return;
+        // Get only visible (filtered) gallery items
+        const getVisibleItems = () => 
+            Array.from(galleryItems).filter(item => item.style.display !== 'none');
 
-                lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
+        // Show image at given index (with wrap-around)
+        function showImage(index) {
+            const visible = getVisibleItems();
+            if (visible.length === 0) return;
 
-                // Build nice caption
-                const title = item.querySelector('h4')?.textContent || '';
-                const desc = item.querySelector('p')?.textContent || '';
-                lightboxCaption.innerHTML = title ? `<strong>${title}</strong><br>${desc}` : desc;
+            if (index < 0) index = visible.length - 1;
+            if (index >= visible.length) index = 0;
 
-                lightbox.style.display = 'flex';
+            currentIndex = index;
+
+            const item = visible[index];
+            const img = item.querySelector('img');
+
+            if (!img) return;
+
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt || 'Project image';
+
+            const h4 = item.querySelector('h4');
+            const p = item.querySelector('p');
+            lightboxCaption.innerHTML = h4 ? 
+                `<strong>${h4.textContent}</strong><br>${p?.textContent || ''}` : 
+                (p?.textContent || '');
+            
+            lightbox.style.display = 'flex';
+        }
+
+        // Open lightbox from any gallery item
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                currentIndex = index;
+                showImage(currentIndex);
             });
         });
 
@@ -95,22 +118,41 @@ document.addEventListener('DOMContentLoaded', () => {
             lightbox.style.display = 'none';
         });
 
-        // Close when clicking outside image
-        lightbox.addEventListener('click', (e) => {
+        lightbox.addEventListener('click', e => {
             if (e.target === lightbox) {
                 lightbox.style.display = 'none';
             }
         });
 
-        // Close with ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+        // Keyboard navigation (arrows + ESC)
+        document.addEventListener('keydown', e => {
+            if (lightbox.style.display !== 'flex') return;
+
+            if (e.key === 'Escape') {
                 lightbox.style.display = 'none';
+            } else if (e.key === 'ArrowLeft') {
+                showImage(currentIndex - 1);
+            } else if (e.key === 'ArrowRight') {
+                showImage(currentIndex + 1);
             }
+        });
+
+        // Arrow buttons (add these to your HTML inside .lightbox if not already there)
+        document.querySelector('.lightbox-prev')?.addEventListener('click', e => {
+            e.stopPropagation();
+            showImage(currentIndex - 1);
+        });
+
+        document.querySelector('.lightbox-next')?.addEventListener('click', e => {
+            e.stopPropagation();
+            showImage(currentIndex + 1);
         });
     }
 
-    // ── Contact Form Validation (if form exists on page) ───────────────
+    // ────────────────────────────────────────────────────────────────
+    // CONTACT FORM VALIDATION (only runs if form exists on the page)
+    // ────────────────────────────────────────────────────────────────
+
     const form = document.querySelector('form');
     if (form) {
         form.addEventListener('submit', (e) => {
@@ -130,9 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // In production → replace with real submit (Formspree, emailJS, etc.)
-            alert('Thank you! Your message has been sent (simulation).');
+            // In real use → replace this with actual submit (Formspree, EmailJS, etc.)
+            alert('Thank you! Your message has been sent (this is a simulation).');
             form.reset();
         });
     }
+
 });
