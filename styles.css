@@ -469,10 +469,12 @@ img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
     margin-bottom: 1.5rem;
     border: 4px solid var(--accent);
     box-shadow: 0 8px 20px rgba(124,58,237,0.2); /* Subtle purple glow */
+    display: block;
 }
 
 /* Responsive: Smaller on mobile */
