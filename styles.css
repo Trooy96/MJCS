@@ -265,6 +265,23 @@ footer a:hover i {
     transform: scale(1.15);
     background: #1EBE57;
 }
+
+
+/* Image stabilization - prevents overflow and tiny extra space below images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Slightly more breathing room in masonry to reduce chaotic feel */
+.gallery-masonry {
+    column-gap: 2rem;
+}
+
+.gallery-item {
+    margin-bottom: 2rem;
+}
 .whatsapp-float i { font-size: 1.8em; }
 /* Animations */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
@@ -280,3 +297,131 @@ footer a:hover i {
 }
 /* Google Fonts - Inter for modern feel */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+
+/* Improve click interaction – cursor pointer already on .gallery-item */
+.gallery-item {
+    cursor: pointer;
+    user-select: none; /* Prevents text selection on click */
+}
+
+/* Make sure overlay doesn't interfere with click */
+.overlay {
+    pointer-events: none; /* Allows clicks to pass through overlay to item */
+}
+
+
+
+
+/* styles.css - add/improve */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 12px;
+    box-shadow: 0 0 60px rgba(124,58,237,0.5);
+    object-fit: contain;
+}
+
+#lightbox-caption {
+    color: white;
+    margin-top: 1.2rem;
+    font-size: 1.3rem;
+    text-align: center;
+    max-width: 80%;
+}
+
+.close-btn {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    color: white;
+    font-size: 3.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.close-btn:hover {
+    transform: scale(1.15);
+}
+
+
+/* Add to styles.css */
+.gallery-item {
+    cursor: zoom-in;           /* Better hint than pointer */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.gallery-item:active {
+    transform: scale(0.98);    /* Slight press feedback on click */
+}
+
+@media (max-width: 768px) {
+    .lightbox img {
+        max-height: 70vh;
+    }
+    #lightbox-caption {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+    .close-btn {
+        top: 15px;
+        right: 20px;
+        font-size: 2.8rem;
+    }
+}
+
+
+
+.lightbox-prev, .lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 3rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+.lightbox-prev:hover, .lightbox-next:hover { background: rgba(124,58,237,0.7); }
+
+
+
+.lightbox-prev, .lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 3rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+.lightbox-prev:hover, .lightbox-next:hover { background: rgba(124,58,237,0.7); }
