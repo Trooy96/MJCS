@@ -280,3 +280,19 @@ footer a:hover i {
 }
 /* Google Fonts - Inter for modern feel */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+/* Image stabilization - prevents overflow and tiny extra space below images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Slightly more breathing room in masonry to reduce chaotic feel */
+.gallery-masonry {
+    column-gap: 2rem;
+}
+
+.gallery-item {
+    margin-bottom: 2rem;
+}
