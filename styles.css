@@ -493,3 +493,68 @@ img {
         padding: 1.5rem;
     }
 }
+
+/* Leadership Section - True Circular Headshots */
+.leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 3rem;
+    justify-items: center;
+}
+
+.leadership-card {
+    text-align: center;
+    max-width: 280px;
+}
+
+.headshot-wrapper {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 1.5rem;
+    position: relative;
+}
+
+.headshot {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;              /* Crops to perfect circle without distortion */
+    object-position: center;
+    border: 6px solid var(--accent); /* Thick purple border like your original */
+    box-shadow: 
+        0 8px 25px rgba(0,0,0,0.15),
+        inset 0 4px 12px rgba(0,0,0,0.1); /* Inner shadow for 3D/spherical feel */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.leadership-card:hover .headshot {
+    transform: scale(1.08);
+    box-shadow: 
+        0 15px 40px rgba(124,58,237,0.3),
+        inset 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.role {
+    font-weight: 600;
+    color: var(--text);
+    margin: 0.5rem 0 0.3rem;
+    font-size: 1.1rem;
+}
+
+.detail {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .headshot-wrapper {
+        width: 150px;
+        height: 150px;
+    }
+    .leadership-grid {
+        gap: 2.5rem;
+    }
+}
+
